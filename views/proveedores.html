@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de proveedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div>
+            <ul className="navbar-nav  me-auto" class="nav navbar-right">  
+                <li className="nav-item " >
+                    <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="container-fluid">
+            <div class= "row" style="padding-left:6rem; padding-top:3rem; padding-bottom:3rem" >
+                <div class="col-4">
+                    <h2 style="padding-top: 3rem">Agregar servicio</h2>
+                    <form style="padding-right:4rem; padding-top: 2rem">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Ingrese nombre del servicio</label>
+                            <input type="text" class="form-control" id="nombreInput">
+                        </div>
+                        <div class="mb-3">
+                            <label for="duracion" class="form-label">Ingrese duracion en minutos</label>
+                            <input type="text" class="form-control" id="duracionInput">
+                        </div>
+                        <div class="mb-3" style="padding-bottom: 3rem">
+                            <label for="precio" class="form-label">Ingrese precio por hora</label>
+                            <input type="text" class="form-control" id="precioInput">
+                        </div>
+                    </form>
+                    <div style="padding-left: 18rem">
+                        <button id="guardarServicioBtn" type="submit" class="btn btn-primary" style="background-color: cadetblue">Guardar</button>
+                        <button id="verServicios" type="submit" class="btn btn-primary" style="background-color: cadetblue">Catalogo</button>
+                    </div>
+                </div>
+                <div class="col-8" style="background-color: cadetblue; padding-top:3rem; padding-bottom:3rem">
+                    <h3 style="padding-left:8rem">Elegir features</h3>
+                    <div class="featuresEstilos" id="features"></div>
+                </div>
+            </div>
+            <div class="row" style="background-color:coral" >
+                <h2 style= "padding-left:6rem; padding-top:3rem">Mis servicios</h2>
+                <div id="servicios" class="serviciosEstilos">
+                    <div id="loader"></div>
+                </div>
+            </div>
+        </section>
+        <div class="modal fade" id="idModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                    </div>
+                    <div class="row ml-ato">
+                        <p id="precioTotal"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        FOOTER
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+    <script src="../javascript/features.js"></script>
+    <script src="../javascript/proveedores.js"></script>
+
+</body>
+</html>

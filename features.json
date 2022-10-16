@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "titulo":"Mostrar en pagina",
+        "costo":10
+    },
+    {
+        "id": 2,
+        "titulo":"+ servicio de agenda",
+        "costo":12
+    },
+    {
+        "id": 3,
+        "titulo":"+ procesar pagos",
+        "costo":12
+    },
+    {
+        "id": 4,
+        "titulo":"+ email marketing",
+        "costo":15
+    }
+]

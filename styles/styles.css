@@ -1,0 +1,14 @@
+.featuresEstilos{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-items:center;
+}
+
+.card{
+    margin: 1rem auto; 
+}
+
+.serviciosEstilos{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
