@@ -26,12 +26,21 @@ function mostrarServicios(catalogo){
                                             <h4 class="card-title">${servicio.nombre}</h4>
                                             <p> Precio por sesion $${servicio.precio}</p>
                                             <p> Duracion en minutos: ${servicio.duracion}</p>
-                                            <button class="btn btn-outline-danger">Borrar</button>                                   
+                                            <button class="btn btn-outline-danger" id="btnEliminarServicio${servicio.id}">Borrar</button>                                   
                                         </div>
                                     </div>`
             divServicios.append(nuevoServicio)
     })
+
+    catalogo.forEach((servicio, indice)=>{document.getElementById(`btnEliminarServicio${servicio.id}`).addEventListener("click", ()=>{
+        catalogo.splice(indice, 1)
+        localStorage.setItem("catalogo", JSON.stringify(catalogo))
+        mostrarServicios(catalogo)
+    })
+
+    })
 }
+
 
 function guardarServicio(catalogo){
     let nombreInput = document.getElementById ("nombreInput")
@@ -61,7 +70,7 @@ btnGuardar.addEventListener("click", ()=>{
 let btnVerServicios = document.getElementById("verServicios")
 btnVerServicios.addEventListener("click", ()=>{
     let divLoader = document.getElementById("loader")
-    divLoader.innerHTML = `<strong style= "padding-left:6rem">cargando su oferta de servicios...</strong>`
+    divLoader.innerHTML = `<strong style= "padding-left:5rem">cargando...</strong>`
     setTimeout(()=>{
         mostrarServicios(catalogo)
     },3000)

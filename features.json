@@ -6,17 +6,17 @@
     },
     {
         "id": 2,
-        "titulo":"+ servicio de agenda",
+        "titulo":"Servicio de agenda",
         "costo":12
     },
     {
         "id": 3,
-        "titulo":"+ procesar pagos",
+        "titulo":"Procesar pagos",
         "costo":12
     },
     {
         "id": 4,
-        "titulo":"+ email marketing",
+        "titulo":"Email marketing",
         "costo":15
     }
 ]

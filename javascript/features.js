@@ -6,7 +6,7 @@ class Feature {
     }
 }
 
-const membresia = []
+let membresia = []
 const cargarFeatures = async()=>{
     const response = await fetch("../features.json")
     const info = await response.json()
@@ -18,8 +18,16 @@ const cargarFeatures = async()=>{
     localStorage.setItem("membresia", JSON.stringify(membresia))
 }
 
+let featuresEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+
+if(localStorage.getItem("membresia")){
+    membresia = JSON.parse(localStorage.getItem("membresia"))
+}
+else{
+    console.log("Agregando features a membresia por primera vez")
+
 cargarFeatures()
-console.log(membresia)
+}
 
 let divFeatures = document.getElementById("features")
 
@@ -36,9 +44,9 @@ nuevoFeature.innerHTML =   `<div id="${feature.id}" class="card" style="width: 1
 divFeatures.append(nuevoFeature)
 
 let btnAgregar = document.getElementById(`btnAgregar${feature.id}`)
-console.log(btnAgregar)
+
 btnAgregar.addEventListener("click", ()=>{
-    console.log(feature)
+
     agregarAlCarrito(feature)
     })
 })
@@ -46,14 +54,6 @@ btnAgregar.addEventListener("click", ()=>{
 let botonAgregar = document.getElementsByClassName("btnAgregar")
 for (let agregado of botonAgregar){
     agregado.addEventListener("click",()=>{
-        Toastify({
-            text:"Feature ha sido agregado",
-            gravity:'top',
-            duration: 3000,
-            style: {
-                background: "coral"
-            }
-        }).showToast()
     })
 }
 
@@ -61,12 +61,32 @@ let botonCarrito = document.getElementById("botonCarrito")
 let modalBody = document.getElementById("modal-body")
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 let parrafoCompra = document.getElementById('precioTotal')
-let featuresEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+
+
 
 function agregarAlCarrito(feature){
-    featuresEnCarrito.push(feature)
-    console.log(featuresEnCarrito)
-    localStorage.setItem("carrito", JSON.stringify(featuresEnCarrito))
+    let featureAgregado = featuresEnCarrito.find((ingresado)=>(ingresado.id == feature.id))
+    if(featureAgregado == undefined){
+        featuresEnCarrito.push(feature)
+        localStorage.setItem("carrito", JSON.stringify(featuresEnCarrito))
+        Toastify({
+            text:"Feature ha sido agregado",
+            gravity:'bottom',
+            duration: 3000,
+            style: {
+                background: "cadetblue"
+            }
+            }).showToast()
+    }else{
+        Toastify({
+            text:`El feature ${feature.titulo} ya fue agregado`,
+            gravity:'bottom',
+            duration: 3000,
+            style: {
+                background: "gray"
+            }
+        }).showToast()
+    }
 }
 
 botonCarrito.addEventListener("click", ()=>{
@@ -81,9 +101,17 @@ function cargarFeaturesEnCarrito(array){
             <div class="card-body">
                     <h4 class="card-title">${featureCarrito.titulo}</h4>
                     <p class="card-text">$${featureCarrito.costo}</p> 
-                    <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+                    <button class= "btn btn-danger" id="botonEliminar${featureCarrito.id}"><i class="fas fa-trash-alt"></i></button>
             </div>    
         </div>`
+    })
+    
+    array.forEach((featureCarrito, indice)=>{document.getElementById(`botonEliminar${featureCarrito.id}`).addEventListener("click", ()=>{
+        array.splice(indice, 1)
+        localStorage.setItem("carrito", JSON.stringify(array))
+        cargarFeaturesEnCarrito(array)
+    })
+
     })
     featuresTotal(array)
 }
@@ -127,3 +155,5 @@ function finalizarCompra(){
         }
     })
 }
+
+
